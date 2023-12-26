@@ -149,12 +149,12 @@ def contact():
         db.session.commit()
     return render_template('contact.html')
 
-# def send_email(name, email, phone, msg):
-#     send_msg = f"Subject:new message\n\nName: {name}\nPhone: {phone}\nMessage:{msg}"
-#     with smtplib.SMTP("smtp.gmail.com", 587) as connection:
-#         connection.starttls()
-#         connection.login(own_email, own_password)
-#         connection.sendmail(own_email, email, send_msg)
+ def send_email(name, email, phone, msg):
+     send_msg = f"Subject:new message\n\nName: {name}\nPhone: {phone}\nMessage:{msg}"
+     with smtplib.SMTP("smtp.gmail.com", 587) as connection:
+         connection.starttls()
+         connection.login(own_email, own_password)
+         connection.sendmail(own_email, email, send_msg)
 
 
 @app.route('/delete/<string:id>', methods=['GET', 'POST'])
@@ -164,7 +164,6 @@ def delete(id):
         db.session.delete(post)
         db.session.commit()
     return redirect('/dashboard')
-
 
 
 @app.route('/logout')
@@ -177,13 +176,6 @@ def logout():
 @app.route('/about')
 def about():
     return render_template("about.html")
-
-
-# @app.route('/contact')
-# def contact():
-#     return render_template("contact.html")
-
-
 
 
 if __name__ == '__main__':
